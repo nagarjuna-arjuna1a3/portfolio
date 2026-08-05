@@ -294,6 +294,31 @@ const ProjectDemos = {
       if (msg) msg.innerText = this.resultMsg;
     }
   }
+  // 5. Portfolio Website Demo
+  portfolio: {
+    render(container) {
+      container.innerHTML = `
+        <div class="text-center space-y-4 p-4">
+          <div class="w-16 h-16 rounded-2xl bg-cyan-500/20 border border-cyan-500/50 flex items-center justify-center mx-auto text-cyan-400">
+            <i data-lucide="globe" class="w-8 h-8"></i>
+          </div>
+          <h4 class="text-xl font-bold text-white">Developer Portfolio Website</h4>
+          <p class="text-slate-300 text-sm max-w-md mx-auto">
+            You are currently viewing this interactive portfolio website! Built with HTML5, CSS3, JavaScript, and Lucide Icons with dark glassmorphism styling.
+          </p>
+          <div class="pt-4 flex justify-center gap-3">
+            <a href="https://nagarjuna-arjuna1a3.github.io/portfolio/" target="_blank" class="bg-cyan-500 hover:bg-cyan-600 text-slate-950 font-bold px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 text-xs">
+              <i data-lucide="external-link" class="w-4 h-4"></i> Open Live Site
+            </a>
+            <a href="https://github.com/nagarjuna-arjuna1a3/portfolio" target="_blank" class="bg-slate-800 hover:bg-slate-700 text-white font-semibold px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 text-xs border border-slate-700">
+              <i data-lucide="github" class="w-4 h-4"></i> View Repository
+            </a>
+          </div>
+        </div>
+      `;
+      if (window.lucide) lucide.createIcons();
+    }
+  }
 };
 
 // Global opener for project modals
@@ -305,6 +330,7 @@ window.openProjectDemo = function(projectId) {
   if (!modal || !bodyEl) return;
 
   const titles = {
+    portfolio: 'Developer Portfolio Website (Web Development)',
     todo: 'To-Do List Application (Python Logic)',
     pwd: 'Password Generator (Tkinter & Python)',
     calc: 'Calculator Application (Arithmetic & Error Handling)',
@@ -314,6 +340,7 @@ window.openProjectDemo = function(projectId) {
   titleEl.innerText = titles[projectId] || 'Project Demo';
   modal.classList.add('active');
 
+  if (projectId === 'portfolio') ProjectDemos.portfolio.render(bodyEl);
   if (projectId === 'todo') ProjectDemos.todoList.render(bodyEl);
   if (projectId === 'pwd') ProjectDemos.passwordGen.render(bodyEl);
   if (projectId === 'calc') ProjectDemos.calculator.render(bodyEl);
